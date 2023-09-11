@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-3232.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-1616.png">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leanersong.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":false,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+<script data-ad-client="ca-pub-6545292450138667" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js">
+    let is_spacing = false;
+    is_spacing = true;
+    pangu.spacingPage();
+    is_spacing = false;
+    document.addEventListener('DOMNodeInserted', function (e) {
+        if (!is_spacing) {
+            is_spacing = true;
+            pangu.spacingNode(e.target);
+            is_spacing = false;
+        }
+    }, false);
+</script>
+
+  <meta name="description" content="🕊 Ajax1.引入axios.js: https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;axios&#x2F;dist&#x2F;axios.min.js 2.使用 axios 函数 常用请求方法:    请求方法 操作    GET 获取数据   POST 数据提交   PUT 修改数据(全部)   DELETE 删除数据   PATCH 修改数据(部分)   1234567891011axios(&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax">
+<meta property="og:url" content="https://leanersong.github.io/Ajax-summary_20230908/index.html">
+<meta property="og:site_name" content="bird の天空">
+<meta property="og:description" content="🕊 Ajax1.引入axios.js: https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;axios&#x2F;dist&#x2F;axios.min.js 2.使用 axios 函数 常用请求方法:    请求方法 操作    GET 获取数据   POST 数据提交   PUT 修改数据(全部)   DELETE 删除数据   PATCH 修改数据(部分)   1234567891011axios(&amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://a.flyks.live/Ajax-summary_20230908/axios.jpg">
+<meta property="og:image" content="https://a.flyks.live/Ajax-summary_20230908/order1.jpg">
+<meta property="og:image" content="https://a.flyks.live/Ajax-summary_20230908/order.jpg">
+<meta property="article:published_time" content="2023-09-08T06:15:00.000Z">
+<meta property="article:modified_time" content="2023-09-11T01:54:03.471Z">
+<meta property="article:author" content="Songirl">
+<meta property="article:tag" content="Ajax">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://a.flyks.live/Ajax-summary_20230908/axios.jpg">
+
+<link rel="canonical" href="https://leanersong.github.io/Ajax-summary_20230908/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Ajax | bird の天空</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="bird の天空" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">bird の天空</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leanersong.github.io/Ajax-summary_20230908/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Songirl">
+      <meta itemprop="description" content="在读大学牲、记录 idea、代码片段、功课思路">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bird の天空">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ajax
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-09-08 14:15:00" itemprop="dateCreated datePublished" datetime="2023-09-08T14:15:00+08:00">2023-09-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-11 09:54:03" itemprop="dateModified" datetime="2023-09-11T09:54:03+08:00">2023-09-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Knowledge-summary/" itemprop="url" rel="index"><span itemprop="name">Knowledge summary</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>🕊</p>
+<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p>1.引入axios.js: <span class="exturl" data-url="aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L25wbS9heGlvcy9kaXN0L2F4aW9zLm1pbi5qcw==">https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js<i class="fa fa-external-link-alt"></i></span></p>
+<p>2.使用 axios 函数</p>
+<p><strong>常用请求方法:</strong></p>
+<table>
+<thead>
+<tr>
+<th>请求方法</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>获取数据</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>数据提交</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>修改数据(全部)</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>删除数据</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>修改数据(部分)</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">url: &#x27;目标资源地址&#x27;,</span><br><span class="line">method: &#x27;请求方法&#x27;,</span><br><span class="line">data: &#123;</span><br><span class="line">参数名:值</span><br><span class="line">&#125;</span><br><span class="line">&#125;).then((result) =&gt; &#123;</span><br><span class="line">// 对服务器返回的数据做后续处理</span><br><span class="line">&#125;).catch(error =&gt; &#123;</span><br><span class="line">// 处理错误</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://a.flyks.live/Ajax-summary_20230908/axios.jpg" alt="axios" title="axios"></p>
+<p>axios 是对 XHR 相关代码进行了封装，让我们只关心传递的接口参数</p>
+<h3 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 1. 创建 XMLHttpRequest 对象</span><br><span class="line">const xhr = new XMLHttpRequest()</span><br><span class="line">// 2. 配置请求方法和请求 url 地址</span><br><span class="line">xhr.open(&#x27;请求方法&#x27;, &#x27;请求url网址&#x27;)</span><br><span class="line">// 3. 监听 loadend 事件，接收响应结果</span><br><span class="line">xhr.addEventListener(&#x27;loadend&#x27;, () =&gt; &#123;</span><br><span class="line">  // 响应结果,处理数据</span><br><span class="line">  console.log(xhr.response)</span><br><span class="line">&#125;)</span><br><span class="line">// 设置请求头-告诉服务器内容类型（JSON字符串）</span><br><span class="line">xhr.setRequestHeader(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;)</span><br><span class="line">// 准备提交的数据</span><br><span class="line">const userObj = &#123;</span><br><span class="line">    参数名1: 值1,</span><br><span class="line">    参数名2: 值2</span><br><span class="line">  &#125;</span><br><span class="line">  const userStr = JSON.stringify(userObj)</span><br><span class="line">// 4. 发起请求</span><br><span class="line">xhr.send(userStr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 1. 创建Promise对象</span><br><span class="line">const p = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    // 2. 执行异步任务-并传递结果</span><br><span class="line">    // 成功调用：resolve(值) 触发 then() 执行</span><br><span class="line">    // 失败调用：reject(值) 触发 catch() 执行</span><br><span class="line">&#125;)</span><br><span class="line">// 3. 接收结果</span><br><span class="line">p.then(result =&gt; &#123;</span><br><span class="line">    // 成功</span><br><span class="line">&#125;).catch(error)=&gt;&#123;</span><br><span class="line">    //失败</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Promise-XHR"><a href="#Promise-XHR" class="headerlink" title="Promise+XHR"></a>Promise+XHR</h3><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1xx</td>
+<td>信息</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>重定向消息</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>客户端错误</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>服务端错误</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 1. 创建Promise对象</span><br><span class="line">const p = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  // 2. 执行XHR异步代码，获取省份列表</span><br><span class="line">  const xhr = new XMLHttpRequest()</span><br><span class="line">  xhr.open(&#x27;GET&#x27;, &#x27;url&#x27;)</span><br><span class="line">  xhr.addEventListener(&#x27;loadend&#x27;, () =&gt; &#123;</span><br><span class="line">    // xhr如何判断响应成功还是失败的？</span><br><span class="line">    // 2xx开头的都是成功响应状态码</span><br><span class="line">    if (xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) &#123;</span><br><span class="line">      resolve(JSON.parse(xhr.response))</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      reject(new Error(xhr.response))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  xhr.send()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 3. 关联成功或失败函数，做后续处理</span><br><span class="line">p.then(result =&gt; &#123;</span><br><span class="line">  console.log(result)</span><br><span class="line">&#125;).catch(error =&gt; &#123;</span><br><span class="line">  // 错误对象要用console.dir详细打印</span><br><span class="line">  console.dir(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="封装的axios函数"><a href="#封装的axios函数" class="headerlink" title="封装的axios函数"></a>封装的axios函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function myAxios(config) &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    const xhr = new XMLHttpRequest()</span><br><span class="line"></span><br><span class="line">    if (config.params) &#123;</span><br><span class="line">      const paramsObj = new URLSearchParams(config.params)</span><br><span class="line">      const queryString = paramsObj.toString()</span><br><span class="line">      config.url += `?$&#123;queryString&#125;`</span><br><span class="line">    &#125;</span><br><span class="line">    xhr.open(config.method || &#x27;GET&#x27;, config.url)</span><br><span class="line"></span><br><span class="line">    xhr.addEventListener(&#x27;loadend&#x27;, () =&gt; &#123;</span><br><span class="line">      if (xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) &#123;</span><br><span class="line">        resolve(JSON.parse(xhr.response))</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(new Error(xhr.response))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    // 1. 判断有data选项，携带请求体</span><br><span class="line">    if (config.data) &#123;</span><br><span class="line">      // 2. 转换数据类型，在send中发送</span><br><span class="line">      const jsonStr = JSON.stringify(config.data)</span><br><span class="line">      xhr.setRequestHeader(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;)</span><br><span class="line">      xhr.send(jsonStr)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      // 如果没有请求体数据，正常的发起请求</span><br><span class="line">      xhr.send()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Promise解决回调地狱"><a href="#Promise解决回调地狱" class="headerlink" title="Promise解决回调地狱"></a>Promise解决回调地狱</h3><p>JS 中的异步代码:setTimeout / setInterval、事件、Ajax；异步代码依靠回调函数来接收，在回调函数中嵌套回调函数，一直嵌套下去就形成了回调函数地狱。</p>
+<p>Promise then() 方法会返回一个新生成的 Promise 对象特性，继续串联下一环任务,then() 回调函数中的返回值，会影响新生成的 Promise 对象最终状态和结果，可以解决回调函数嵌套问题。</p>
+<p>例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 1. 得到-获取省份Promise对象</span><br><span class="line">axios(&#123;url: &#x27;http://hmajax.itheima.net/api/province&#x27;&#125;).then(result =&gt; &#123;</span><br><span class="line">  //处理省份数据</span><br><span class="line">  pname = result.data.list[0]</span><br><span class="line">  // 2. 得到-获取城市Promise对象</span><br><span class="line">  return axios(&#123;url: &#x27;http://hmajax.itheima.net/api/city&#x27;, params:&#123;pname&#125;&#125;)</span><br><span class="line">&#125;).then(result =&gt; &#123;</span><br><span class="line">  //处理城市数据</span><br><span class="line">  const cname = result.data.list[0]</span><br><span class="line">  // 3. 得到-获取地区Promise对象</span><br><span class="line">  return axios(&#123;url: &#x27;http://hmajax.itheima.net/api/area&#x27;, params:&#123;pname,cname&#125;&#125;)</span><br><span class="line">&#125;).then(result =&gt; &#123;</span><br><span class="line">  //处理地区数据</span><br><span class="line">  console.log(result)</span><br><span class="line">  const areaName = result.data.list[0]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="async-和-await"><a href="#async-和-await" class="headerlink" title="async 和 await"></a>async 和 await</h3><p>在 async 函数内，使用 await 关键字取代 then 函数，等待获取 Promise 对象成功状态的结果值。</p>
+<p>上述例子可改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 1. 定义async修饰函数</span><br><span class="line">async function getData() &#123;</span><br><span class="line">  // 2. await等待Promise对象成功的结果</span><br><span class="line">  const pObj = await axios(&#123;url: &#x27;http://hmajax.itheima.net/api/province&#x27;&#125;)</span><br><span class="line">  const pname = pObj.data.list[0]</span><br><span class="line">  const cObj = await axios(&#123;url: &#x27;http://hmajax.itheima.net/api/city&#x27;, params:&#123;pname&#125;&#125;)</span><br><span class="line">  const cname = cObj.data.list[0]</span><br><span class="line">  const aObj = await axios(&#123;url: &#x27;http://hmajax.itheima.net/api/area&#x27;, params:&#123;pname,cname&#125;&#125;)</span><br><span class="line">  const areaName = aObj.data.list[0]</span><br><span class="line">&#125;</span><br><span class="line">getData()</span><br></pre></td></tr></table></figure>
+
+<h3 id="事件循环EventLoop"><a href="#事件循环EventLoop" class="headerlink" title="事件循环EventLoop"></a>事件循环EventLoop</h3><p>执行代码和收集异步任务的模型，在调用栈空闲，反复调用任务队列里回调函数的执行机制，就叫事件循环。</p>
+<p>(1)：执行同步代码，遇到异步代码交给宿主浏览器环境执行</p>
+<p>(2)：异步有了结果后，把回调函数放入任务队列排队</p>
+<p>(3)：当调用栈空闲后，反复调用任务队列里的回调函数</p>
+<p><strong>ES6 之后异步任务分为：</strong></p>
+<p>宏任务：由浏览器环境执行的异步代码（JS脚本执行事件（script）/setTimeout/setInterval/AJAX请求完成事件/用户交互事件等 ）</p>
+<p>微任务：由 JS 引擎环境执行的异步代码（Promise 本身是同步的，而then和catch回调函数是异步的，属于微任务）</p>
+<p>同步任务执行后执行微任务队列，微任务队列清空后，才会执行下一个宏任务</p>
+<p><img data-src="https://a.flyks.live/Ajax-summary_20230908/order1.jpg" alt="事件循环例子" title="事件循环"></p>
+<p><img data-src="https://a.flyks.live/Ajax-summary_20230908/order.jpg" alt="事件循环例子" title="事件循环"></p>
+<h3 id="Promise-all-静态方法"><a href="#Promise-all-静态方法" class="headerlink" title="Promise.all 静态方法"></a>Promise.all 静态方法</h3><p>合并多个 Promise 对象，等待所有同时成功完成（或某一个失败），做后续逻辑。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const p = Promise.all([Promise对象, Promise对象, ...])</span><br><span class="line">p.then(result =&gt; &#123;</span><br><span class="line">  // result 结果: [Promise对象成功结果, Promise对象成功结果, ...]</span><br><span class="line">&#125;).catch(error =&gt; &#123;</span><br><span class="line">  // 第一个失败的 Promise 对象，抛出的异常对象</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Ajax/" rel="tag"># Ajax</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Hello-World_20230604/" rel="prev" title="你好世界">
+      <i class="fa fa-chevron-left"></i> 你好世界
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Node.js-Webpack-summary_20230910/" rel="next" title="Node.js-Webpack">
+      Node.js-Webpack <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax"><span class="nav-number">1.</span> <span class="nav-text">Ajax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XMLHttpRequest"><span class="nav-number">1.1.</span> <span class="nav-text">XMLHttpRequest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise"><span class="nav-number">1.2.</span> <span class="nav-text">Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-XHR"><span class="nav-number">1.3.</span> <span class="nav-text">Promise+XHR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%81%E8%A3%85%E7%9A%84axios%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">封装的axios函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise%E8%A7%A3%E5%86%B3%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1"><span class="nav-number">1.5.</span> <span class="nav-text">Promise解决回调地狱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#async-%E5%92%8C-await"><span class="nav-number">1.6.</span> <span class="nav-text">async 和 await</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AFEventLoop"><span class="nav-number">1.7.</span> <span class="nav-text">事件循环EventLoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-all-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.</span> <span class="nav-text">Promise.all 静态方法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Songirl"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Songirl</p>
+  <div class="site-description" itemprop="description">在读大学牲、记录 idea、代码片段、功课思路</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Songirl</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lozad.js/1.14.0/lozad.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://leanersong.github.io/Ajax-summary_20230908/',]
+      });
+      });
+  </script>
+
+</body>
+</html>
